@@ -1,0 +1,158 @@
+
+// Light green:    #7ed56f
+// Medium green:   #55c57a
+// Dark green:     #28b485
+
+$color-primary: #55c57a
+$color-primary-light: #7ed56f
+$color-primary-dark: #28b485
+
+*,
+*::after,
+*::before
+    padding: 0
+    margin: 0
+    text-decoration: none
+    list-style: none
+    outline: none
+    box-sizing: inherit
+
+html
+    // Упрощаем указание относительных единиц -> 1rem = 10px; 1.5rem = 15px
+    font-size: 62.5%
+
+body
+    font-family: "Lato", sans-serif
+    font-weight: 400
+    // font-size: 16px;
+    line-height: 1.7
+    color: #777
+    padding: 3rem
+    box-sizing: border-box
+
+.header
+    height: 95vh
+    position: relative
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+    background-size: cover
+    background-position: top
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+    user-select: none
+    &__logo-box
+        position: absolute
+        top: 4rem
+        left: 4rem
+    &__logo
+        height: 4.5rem
+    &__text-box
+        position: absolute
+        top: 40%
+        left: 50%
+        transform: translate(-50%, -50%)
+        text-align: center
+
+.heading-primary
+    color: white
+    text-transform: uppercase
+    margin-bottom: 6rem
+    // это свойство необходимо при баге когда анимация в конце дергается
+    backface-visibility: hidden
+    &_main
+        display: block
+        font-size: 6rem
+        font-weight: 400
+        letter-spacing: 3.5rem
+        animation-name: moveInLeft
+        animation-duration: 2s    
+        // animation-delay: 3s
+        // animation-iteration-count: 3
+        // animation-timing-function: ease-in-out
+    &_sub
+        display: block
+        font-size: 2rem
+        font-weight: 700
+        letter-spacing: 1.7rem
+
+        animation-name: moveInRight
+        animation-duration: 2s
+
+@keyframes moveInLeft
+    0%
+        opacity: 0
+        transform: translateX(-10rem)
+    80%
+        transform: translateX(1rem)
+    100%
+        opacity: 1
+        transform: translate(0)
+
+@keyframes moveInRight
+    0%
+        opacity: 0
+        transform: translateX(10rem)
+    80%
+        transform: translateX(-1rem)
+    100%
+        opacity: 1
+        transform: translate(0)
+
+@keyframes moveInBottom
+    0%
+        opacity: 0
+        transform: translateY(3rem)
+    100%
+        opacity: 1
+        transform: translate(0)
+
+// псевдокласс (используется : )
+// :link псевдокласс для не посещенных ссылок, :visited - для посещенных
+.btn:link,
+.btn:visited
+    text-transform: uppercase
+    padding: 1.5rem 4rem
+    display: inline-block
+    border-radius: 10rem
+    transition: all .2s
+    position: relative
+    font-size: 1.6rem
+
+.btn:hover
+    transform: translateY(-3px)
+    box-shadow: 0 1rem 2rem rgba(0,0,0, 0.2)
+
+// :active - сработает при нажатии на ссылку
+.btn:active
+    transform: translateY(-1px)
+    box-shadow: 0 .5rem 1rem rgba(0,0,0, 0.2)
+
+.btn_white
+    background-color: white
+    color: #777
+
+// псевдоелемент (используется :: )
+.btn::after
+    content: ""
+    display: inline-block
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    border-radius: 10rem
+    z-index: -1
+    transition: all 0.4s
+
+.btn_white::after
+    background-color: #fff
+
+.btn:hover::after
+    transform: scale(1.5)
+    opacity: 0
+
+.btn_animated
+    animation: moveInBottom 0.5s ease-out 0.75s
+    // animation-fill-mode - определяет, какие стили должны применяться к элементу, когда анимация не проигрывается
+    // backwards - к елементу применяются стили первого ключевого кадра (на время задержки анимации)
+    // forwards - к элементу по окончанию анимации примееняются стили последнего клюевого кадра
+    // both - применяются обе функции
+    animation-fill-mode: backwards
