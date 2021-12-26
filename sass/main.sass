@@ -7,6 +7,9 @@ $color-primary: #55c57a
 $color-primary-light: #7ed56f
 $color-primary-dark: #28b485
 
+$color-gray-dark: #777
+$color-white: #fff
+
 *,
 *::after,
 *::before
@@ -26,14 +29,14 @@ body
     font-weight: 400
     // font-size: 16px;
     line-height: 1.7
-    color: #777
+    color: $color-gray-dark
     padding: 3rem
     box-sizing: border-box
 
 .header
     height: 95vh
     position: relative
-    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg)
     background-size: cover
     background-position: top
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
@@ -52,7 +55,7 @@ body
         text-align: center
 
 .heading-primary
-    color: white
+    color: $color-white
     text-transform: uppercase
     margin-bottom: 6rem
     // это свойство необходимо при баге когда анимация в конце дергается
@@ -118,16 +121,16 @@ body
 
 .btn:hover
     transform: translateY(-3px)
-    box-shadow: 0 1rem 2rem rgba(0,0,0, 0.2)
+    box-shadow: 0 1rem 2rem rgba(black, 0.2)
 
 // :active - сработает при нажатии на ссылку
 .btn:active
     transform: translateY(-1px)
-    box-shadow: 0 .5rem 1rem rgba(0,0,0, 0.2)
+    box-shadow: 0 .5rem 1rem rgba(black, 0.2)
 
 .btn_white
-    background-color: white
-    color: #777
+    background-color: $color-white
+    color: $color-gray-dark
 
 // псевдоелемент (используется :: )
 .btn::after
@@ -143,7 +146,7 @@ body
     transition: all 0.4s
 
 .btn_white::after
-    background-color: #fff
+    background-color: $color-white
 
 .btn:hover::after
     transform: scale(1.5)
