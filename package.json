@@ -11,5 +11,8 @@
     "name": "Nikita Kuduhovi",
     "email": "dumb_animal@icloud.com"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^7.0.0"
+  }
 }
