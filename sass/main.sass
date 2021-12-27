@@ -1,14 +1,11 @@
 
-// Light green:    #7ed56f
-// Medium green:   #55c57a
-// Dark green:     #28b485
-
 $color-primary: #55c57a
 $color-primary-light: #7ed56f
 $color-primary-dark: #28b485
 
-$color-gray-dark: #777
+$color-dark-gray: #777
 $color-white: #fff
+$color-black: #000
 
 *,
 *::after,
@@ -29,7 +26,7 @@ body
     font-weight: 400
     // font-size: 16px;
     line-height: 1.7
-    color: $color-gray-dark
+    color: $color-dark-gray
     padding: 3rem
     box-sizing: border-box
 
@@ -59,6 +56,7 @@ body
     text-transform: uppercase
     margin-bottom: 6rem
     // это свойство необходимо при баге когда анимация в конце дергается
+    // оно скрывает заднюю сторону элемента при анимации
     backface-visibility: hidden
     &_main
         display: block
@@ -107,55 +105,48 @@ body
         opacity: 1
         transform: translate(0)
 
-// псевдокласс (используется : )
-// :link псевдокласс для не посещенных ссылок, :visited - для посещенных
-.btn:link,
-.btn:visited
-    text-transform: uppercase
-    padding: 1.5rem 4rem
-    display: inline-block
-    border-radius: 10rem
-    transition: all .2s
-    position: relative
-    font-size: 1.6rem
-
-.btn:hover
-    transform: translateY(-3px)
-    box-shadow: 0 1rem 2rem rgba(black, 0.2)
-
-// :active - сработает при нажатии на ссылку
-.btn:active
-    transform: translateY(-1px)
-    box-shadow: 0 .5rem 1rem rgba(black, 0.2)
-
-.btn_white
-    background-color: $color-white
-    color: $color-gray-dark
-
-// псевдоелемент (используется :: )
-.btn::after
-    content: ""
-    display: inline-block
-    position: absolute
-    top: 0
-    left: 0
-    height: 100%
-    width: 100%
-    border-radius: 10rem
-    z-index: -1
-    transition: all 0.4s
-
-.btn_white::after
-    background-color: $color-white
-
-.btn:hover::after
-    transform: scale(1.5)
-    opacity: 0
-
-.btn_animated
-    animation: moveInBottom 0.5s ease-out 0.75s
-    // animation-fill-mode - определяет, какие стили должны применяться к элементу, когда анимация не проигрывается
-    // backwards - к елементу применяются стили первого ключевого кадра (на время задержки анимации)
-    // forwards - к элементу по окончанию анимации примееняются стили последнего клюевого кадра
-    // both - применяются обе функции
-    animation-fill-mode: backwards
+.btn
+    &:link, &:visited
+        // псевдокласс (используется : )
+        // :link псевдокласс для не посещенных ссылок, :visited - для посещенных
+        text-transform: uppercase
+        padding: 1.5rem 4rem
+        display: inline-block
+        border-radius: 10rem
+        transition: all .2s
+        position: relative
+        font-size: 1.6rem
+    &:hover
+        transform: translateY(-3px)
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2)
+        &::after
+            transform: scale(1.5)
+            opacity: 0
+    &:active
+        // :active - сработает при нажатии на ссылку
+        transform: translateY(-1px)
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2)
+    &::after
+        // псевдоелемент (используется :: )
+        content: ""
+        display: inline-block
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        border-radius: 10rem
+        z-index: -1
+        transition: all 0.4s
+    &_white
+        background-color: $color-white
+        color: $color-dark-gray
+        &::after
+            background-color: $color-white
+    &_animated
+        animation: moveInBottom 0.5s ease-out 0.75s
+        // animation-fill-mode - определяет, какие стили должны применяться к элементу, когда анимация не проигрывается
+        // backwards - к елементу применяются стили первого ключевого кадра (на время задержки анимации)
+        // forwards - к элементу по окончанию анимации примееняются стили последнего клюевого кадра
+        // both - применяются обе функции
+        animation-fill-mode: backwards
