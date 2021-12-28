@@ -1,9 +1,10 @@
 .card
+    // FUNCTIONALITY
     perspective: 150rem
     position: relative
-    height: 50rem
+    height: 52rem
     &__side
-        height: 50rem
+        height: 52rem
         transition: all .8s ease
         backface-visibility: hidden
         position: absolute
@@ -14,6 +15,7 @@
         box-shadow: 0 1.5rem 4rem rgba($color-black, .15)
         &_front
             background-color: $color-white
+            overflow: hidden
         &_back
             transform: rotateY(180deg)
             &-1
@@ -22,8 +24,51 @@
                 background: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark)
             &-3
                 background: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark)
-
     &:hover &__side_front
-        transform: rotateY(180deg)
+        transform: rotateY(-180deg)
     &:hover &__side_back
         transform: rotateY(0deg) 
+    // FRONT SIDE STYLING
+    &__picture
+        border-radius: 3px 3px 0 0
+        background-size: cover
+        background-blend-mode: screen
+        height: 23rem
+        clip-path: polygon(0 0,100% 0, 100% 85%, 0 100%) 
+        &_1
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url("../../img/tour-1.jpg")
+        &_2
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url("../../img/tour-2.jpg")
+        &_3
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url("../../img/tour-3.jpg")
+    &__heading
+        font-size: 2.8rem
+        font-weight: 300
+        text-transform: uppercase
+        color: $color-white
+        text-align: right
+        position: absolute
+        top: 12rem
+        right: 2rem
+        width: 70%
+    &__heading-span
+        padding: 1rem 1.5rem
+        box-decoration-break: clone
+        -webkit-box-decoration-break: clone
+        &_1
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light,.85), rgba($color-secondary-dark,.85))
+        &_2
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light,.85), rgba($color-primary-dark,.85))
+        &_3
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light,.85), rgba($color-tertiary-dark,.85))
+    &__details
+        padding: 3rem
+        ul
+            width: 80%
+            margin: 0 auto
+            li
+                text-align: center
+                font-size: 1.5rem
+                padding: 1rem
+                &:not(:last-child)
+                    border-bottom: 1px solid $color-light-gray-2
