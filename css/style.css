@@ -46,6 +46,7 @@ html {
 body {
   padding: 3rem;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -166,7 +167,6 @@ body {
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  user-select: none;
 }
 .header__logo-box {
   position: absolute;
@@ -278,6 +278,40 @@ body {
 .btn-text:active {
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.composition {
+  position: relative;
+}
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 0;
+  transition: all 0.2s;
+  outline-offset: 2rem;
+  cursor: pointer;
+}
+.composition__photo_p1 {
+  left: 0;
+  top: -2rem;
+}
+.composition__photo_p2 {
+  right: 0;
+  top: 2rem;
+}
+.composition__photo_p3 {
+  left: 20%;
+  top: 10rem;
+}
+.composition__photo:hover {
+  outline: 1.5rem solid #55c57a;
+  transform: scale(1.05);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(0.9);
 }
 
 /*# sourceMappingURL=style.css.map */
