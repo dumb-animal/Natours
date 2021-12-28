@@ -160,6 +160,22 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.u-mt-huge {
+  margin-top: 10rem;
+}
+
+.u-mt-big {
+  margin-top: 8rem;
+}
+
+.u-mt-medium {
+  margin-top: 4rem;
+}
+
+.u-mt-small {
+  margin-top: 1.5rem;
+}
+
 .header {
   height: 95vh;
   position: relative;
@@ -232,7 +248,7 @@ body {
 
 .section-tours {
   background-color: #f7f7f7;
-  padding: 25rem 0;
+  padding: 25rem 0 15rem 0;
   margin-top: -10rem;
 }
 
@@ -275,6 +291,13 @@ body {
 }
 .btn_white::after {
   background-color: #fff;
+}
+.btn_green {
+  background-color: #55c57a;
+  color: #fff;
+}
+.btn_green::after {
+  background-color: #55c57a;
 }
 .btn_animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
@@ -395,6 +418,7 @@ body {
   transform: rotateY(0deg);
 }
 .card__picture {
+  backface-visibility: hidden;
   border-radius: 3px 3px 0 0;
   background-size: cover;
   background-blend-mode: screen;
@@ -411,6 +435,7 @@ body {
   background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("../../img/tour-3.jpg");
 }
 .card__heading {
+  backface-visibility: hidden;
   font-size: 2.8rem;
   font-weight: 300;
   text-transform: uppercase;
@@ -449,6 +474,26 @@ body {
 }
 .card__details ul li:not(:last-child) {
   border-bottom: 1px solid #eee;
+}
+.card__cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+}
+.card__price-box {
+  color: #fff;
+  margin-bottom: 8rem;
+}
+.card__price-only {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 100;
 }
 
 /*# sourceMappingURL=style.css.map */
