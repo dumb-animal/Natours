@@ -1,0 +1,38 @@
+.footer
+    background-color: $color-dark-gray-3
+    padding: 10rem 0
+    font-size: 1.4rem
+    color: $color-light-gray-1
+    &__logo-box
+        text-align: center
+        margin-bottom: 8rem
+    &__logo
+        width: 14rem
+        height: 15rem
+        object-fit: cover
+        object-position: bottom
+    &__navigation
+        border-top: 1px solid $color-light-gray-2
+        padding-top: 2rem
+        display: inline-block
+    &__list
+    &__item
+        display: inline-block
+        &:not(:last-child)
+            margin-right: 1.5rem
+    &__link
+        &:link, &:visited
+            text-transform: uppercase
+            color: inherit
+            display: inline-block
+            transition: all .2s
+            background-color: $color-dark-gray-3
+        &:hover, &:active
+            color: $color-primary-light
+            box-shadow: 0 1rem 2rem rgba($color-black, .4)
+            transform: rotate(5deg) scale(1.2)
+    &__copyright
+        width: 85%
+        float: right
+        border-top: 1px solid $color-light-gray-2
+        padding-top: 2rem
