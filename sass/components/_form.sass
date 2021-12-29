@@ -53,14 +53,11 @@
         left: 0
         top: 0
         &::after
+            @include absolute-center-position
             content: ""
             height: 1.3rem
             width: 1.3rem
             border-radius: 50%
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%,-50%)
     &__radio-input:checked + &__radio-label > &__radio-button::after
         background-color: $color-primary
         
