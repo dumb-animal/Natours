@@ -1,5 +1,5 @@
 .btn
-    &:link, &:visited
+    &, &:link, &:visited
         // псевдокласс (используется : )
         // :link псевдокласс для не посещенных ссылок, :visited - для посещенных
         text-transform: uppercase
@@ -9,7 +9,10 @@
         transition: all .2s
         position: relative
         font-size: $default-font-size
-    &:hover
+        // Change for the <button> element
+        border: none
+        cursor: pointer
+    &:hover, &:focus
         transform: translateY(-3px)
         box-shadow: 0 1rem 2rem rgba($color-black, 0.2)
         &::after
