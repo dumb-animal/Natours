@@ -42,7 +42,16 @@
     background-size: cover
     border-radius: 3px
     box-shadow: 0 1.5rem 4rem rgba($color-black, .25)
-    margin: 0 auto
+    margin: 3rem
+    @include respond(tablet-landscape)
+        background-image: linear-gradient(105deg, rgba($color-white, .9) 0%, rgba($color-white, .9) 65%, transparent 65%), url(../img/booking-bg.jpg)
+    @include respond(tablet-portrait)
+        margin: 0 auto
+        background-image: linear-gradient(to right, rgba($color-white, .9), rgba($color-white, .9)), url(../img/booking-bg.jpg)
     &__form
         width: 50%
         padding: 6rem
+        @include respond(tablet-landscape)
+            width: 65%
+        @include respond(tablet-portrait)
+            width: 100%
