@@ -9,15 +9,33 @@
         transition: all .2s
         outline-offset: 2rem
         cursor: pointer
+        z-index: 10
+        @include respond(tablet-portrait)
+            float: left
+            position: relative
+            width: 33.33%
+            box-shadow: 0 1.5rem 4rem rgba($color-black, .2)
         &_p1
             left: 0
             top: -2rem
+            @include respond(tablet-portrait)
+                top: 0
+                transform: scale(1.2)
         &_p2
             right: 0
             top: 2rem
+            @include respond(tablet-portrait)
+                top: -1rem
+                transform: scale(1.3)
+                z-index: 11
         &_p3
             left: 20%
             top: 10rem
+            @include respond(tablet-portrait)
+                height: 78.2px
+                top:0
+                left: 0
+                transform: scale(1.2)
         &:hover
             outline: 1.5rem solid $color-primary
             transform: scale(1.05)
