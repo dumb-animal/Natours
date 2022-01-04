@@ -9,3 +9,29 @@
     top: 50%
     left: 50%
     transform: translate(-50%,-50%)
+
+// MEDIA QUERIES
+// 0 - 600px        Phone
+// 600 - 900px      Tablet (portrait)
+// 900 - 1200px     Tablet (landscape)
+// [1200 - 1800]    Is where our normal style apply
+// 1800px +         Big desctop 
+
+// $phone: 600px
+// $tablet-portrait: 900px
+// $tablet-landscape: 1200px
+// $big-desktop: 1800px
+
+@mixin respond($breakpoint)
+    @if $breakpoint == phone
+        @media (max-width: 600px)
+            @content
+    @if $breakpoint == tablet-portrait
+        @media (max-width: 900px)
+            @content
+    @if $breakpoint == tablet-landscape
+        @media (max-width: 1200px)
+            @content
+    @if $breakpoint == big-desktop
+        @media (min-width: 1800px)
+            @content

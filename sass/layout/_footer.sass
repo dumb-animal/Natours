@@ -3,6 +3,8 @@
     padding: 10rem 0
     font-size: 1.4rem
     color: $color-light-gray-1
+    @include respond(tablet-portrait)
+        padding: 8rem 0
     &__logo-box
         text-align: center
         margin-bottom: 8rem
@@ -15,6 +17,9 @@
         border-top: 1px solid $color-light-gray-2
         padding-top: 2rem
         display: inline-block
+        @include respond(tablet-portrait)
+            width: 100%
+            text-align: center
     &__list
     &__item
         display: inline-block
@@ -36,3 +41,7 @@
         float: right
         border-top: 1px solid $color-light-gray-2
         padding-top: 2rem
+        @include respond(tablet-portrait)
+            width: 100%
+            float: none
+            text-align: center
