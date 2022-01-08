@@ -21,24 +21,44 @@
 
     &__content
         position: relative
-        width: 75%
+        width: 80%
         background-color: $color-white
         border-radius: 3px
         display: flex
         justify-content: center
-        align-items: center
+        // align-items: center 
         overflow: hidden
         opacity: 0
         transform: scale(0.5)
         transition: all .3s .2s
+        @include respond(tablet-portrait)
+            flex-direction: column
+            
     &__left
         width: 33%
+        @include respond(tablet-portrait)
+            width: 100%
+            // height: 320px
+            display: flex
+            flex-direction: row
+        @include respond(phone)
+            display: none
     &__img
         display: block
         width: 100%
+        height: 50%
+        object-fit: cover
+        @include respond(tablet-portrait)
+            width: 50%
+            height: auto
     &__right
+        position: relative
         width: 67%
         padding: 3rem 5rem
+        @include respond(tablet-portrait)
+            width: 100%
+        @include respond(phone)
+            padding: 1.5rem 2rem
     &__text
         font-size: 1.4rem
         margin-bottom: 4rem
@@ -47,6 +67,10 @@
         column-rule: 1px solid $color-light-gray-2
         hyphens: auto
         text-align: justify
+        @include respond(tablet-portrait)
+            column-count: 1
+        @include respond(phone)
+            margin-bottom: 2rem
     &__close
         &:link, &:visited
             position: absolute
