@@ -1,12 +1,16 @@
 .header
     height: 95vh
     position: relative
-    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg)
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-large.jpg)
     background-size: cover
     background-position: top
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+    @include respond(tablet-portrait)
+        clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%)
+        background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-medium.jpg)
     @include respond(phone)
         clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%)
+        background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-small.jpg)
     &__logo-box
         position: absolute
         top: 4rem

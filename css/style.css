@@ -3,30 +3,35 @@
   src: url("../../fonts/Lato-Thin.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("../../fonts/Lato-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("../../fonts/Lato-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("../../fonts/Lato-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("../../fonts/Lato-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 *,
 *::after,
@@ -373,14 +378,21 @@ body {
 .header {
   height: 95vh;
   position: relative;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-large.jpg);
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
+@media (max-width: 900px) {
+  .header {
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-medium.jpg);
+  }
+}
 @media (max-width: 600px) {
   .header {
     clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-small.jpg);
   }
 }
 .header__logo-box {
@@ -532,7 +544,7 @@ body {
 .section-features {
   margin-top: -10rem;
   padding: 20rem 0;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/features-bg.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/features-bg-large.jpg);
   background-size: cover;
   background-position: top;
   transform: skewY(-7deg);
@@ -542,7 +554,13 @@ body {
 }
 @media (max-width: 900px) {
   .section-features {
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/features-bg-medium.jpg);
     padding: 10rem 0;
+  }
+}
+@media (max-width: 600px) {
+  .section-features {
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/features-bg-small.jpg);
   }
 }
 
@@ -579,7 +597,7 @@ body {
 }
 
 .book {
-  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 50%, transparent 45%), url(../img/booking-bg.jpg);
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 50%, transparent 45%), url(../img/booking-bg-large.jpg);
   background-size: cover;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.25);
@@ -593,7 +611,12 @@ body {
 @media (max-width: 900px) {
   .book {
     margin: 0 auto;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../img/booking-bg.jpg);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../img/booking-bg-medium.jpg);
+  }
+}
+@media (max-width: 600px) {
+  .book {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../img/booking-bg-small.jpg);
   }
 }
 .book__form {
@@ -733,7 +756,6 @@ body {
 }
 @media (max-width: 900px) {
   .composition__photo_p3 {
-    height: 78.2px;
     top: 0;
     left: 0;
     transform: scale(1.2);
