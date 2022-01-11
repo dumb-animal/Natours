@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "sass --watch sass/main.sass css/style.css",
+    "watch:sass": "sass --watch sass/main.sass css/style.css",
+    "compile:sass": "sass --style=compressed sass/main.sass css/style.css",
     "start": "live-server"
   },
   "keywords": [],

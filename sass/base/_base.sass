@@ -24,6 +24,10 @@ html
 body
     padding: 3rem
     box-sizing: border-box
-    user-select: none
+    // user-select: none
     @include respond(tablet-portrait)
         padding: 0
+
+::selection
+    background-color: $color-primary
+    color: white

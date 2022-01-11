@@ -91,7 +91,10 @@
 
 
 
-    @include respond(tablet-portrait)
+    // @include respond(tablet-portrait)
+    // Второе условие необходимо если сайт открыт на touch устройстве где нет hover эффекта
+    // (hover:none) или (hover:hover)
+    @media only screen and (max-width: 900px), only screen and (hover: none)
         border-radius: 3px
         box-shadow: 0 1.5rem 4rem rgba($color-black, .15)
         height: auto
