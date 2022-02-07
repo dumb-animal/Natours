@@ -1,54 +1,17 @@
-// LOADING .ENV FILE
-require('dotenv').config();
 const express = require('express');
-const fs = require('fs');
+const morgan = require('morgan');
+
+const toursRouter = require('./routes/toursRouter');
+const usersRouter = require('./routes/usersRouter');
 
 const app = express();
 
 // MIDDLEWARE
-app.use(express.json());
+app.use(morgan('dev')); // Logger
+app.use(express.json()); // JSON parser
 
-const PORT = process.env.PORT || 3000;
+// ROUTES
+app.use('/api/v1/tours', toursRouter);
+app.use('/api/v1/users', usersRouter);
 
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/data/tours.json`));
-
-app.get('/api/v1/tours', (req, res) => {
-   res.status(200).json({
-      status: 'success',
-      results: tours.length,
-      data: { tours },
-   });
-});
-
-app.post('/api/v1/tours', (req, res) => {
-   const newId = tours[tours.length - 1].id + 1;
-   const newTour = Object.assign({ id: newId }, req.body);
-
-   tours.push(newTour);
-
-   res.status(200).json({
-      status: 'success',
-      data: { tour: newTour },
-   });
-});
-
-app.get('/api/v1/tours/:id', (req, res) => {
-   const id = parseInt(req.params.id);
-   const tour = tours.find((el) => el.id === id);
-
-   if (tour) {
-      res.status(200).json({
-         status: 'success',
-         data: { tour },
-      });
-   } else {
-      res.status(404).json({
-         status: 'fail',
-         massage: 'Not Found',
-      });
-   }
-});
-
-app.listen(PORT, () => {
-   console.log(`App running on port ${PORT}...`);
-});
+module.exports = app;
