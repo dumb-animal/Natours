@@ -1,20 +1,29 @@
 {
   "name": "natours",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Full-stack study project",
+  "main": "app.js",
   "scripts": {
     "watch:sass": "sass --watch public/sass/main.sass public/css/style.css",
     "compile:sass": "sass --style=compressed public/sass/main.sass public/css/style.css",
-    "start": "live-server public"
+    "start": "nodemon"
   },
-  "keywords": ["node.js", "sass", "express"],
+  "keywords": [
+    "node.js",
+    "sass",
+    "express"
+  ],
   "author": {
     "name": "Nikita Kuduhovi",
     "email": "dumb_animal@icloud.com"
   },
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "sass": "^1.45.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2"
   }
 }
