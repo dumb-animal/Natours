@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch:sass": "sass --watch sass/main.sass css/style.css",
-    "compile:sass": "sass --style=compressed sass/main.sass css/style.css",
-    "start": "live-server"
+    "watch:sass": "sass --watch public/sass/main.sass public/css/style.css",
+    "compile:sass": "sass --style=compressed public/sass/main.sass public/css/style.css",
+    "start": "live-server public"
   },
-  "keywords": [],
+  "keywords": ["node.js", "sass", "express"],
   "author": {
     "name": "Nikita Kuduhovi",
     "email": "dumb_animal@icloud.com"
