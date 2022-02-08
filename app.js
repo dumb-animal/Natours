@@ -9,6 +9,7 @@ const app = express();
 // MIDDLEWARE
 app.use(morgan('dev')); // Logger
 app.use(express.json()); // JSON parser
+app.use(express.static(`${__dirname}/public`)); // Static files
 
 // ROUTES
 app.use('/api/v1/tours', toursRouter);

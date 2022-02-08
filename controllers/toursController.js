@@ -2,6 +2,25 @@ const fs = require('fs');
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`));
 
+exports.checkID = (req, res, next, val) => {
+   console.log('ID: ', val);
+   if (val >= tours.length) {
+      return res.status(404).json({
+         status: 'fail',
+         massage: 'Ivalid ID',
+      });
+   }
+   next();
+};
+exports.checkBody = (req, res, next) => {
+   if (!req.body.name || !req.body.price) {
+      return res.status(400).json({
+         status: 'fail',
+         massage: 'Missing name or price',
+      });
+   }
+   next();
+};
 exports.getAllTours = (req, res) => {
    res.status(200).json({
       status: 'success',
@@ -21,51 +40,24 @@ exports.createTour = (req, res) => {
    });
 };
 exports.getTour = (req, res) => {
-   const id = parseInt(req.params.id);
+   const id = req.params.id;
    const tour = tours.find((el) => el.id === id);
-
-   if (tour) {
-      res.status(200).json({
-         status: 'success',
-         data: { tour },
-      });
-   } else {
-      res.status(404).json({
-         status: 'fail',
-         massage: 'Not Found',
-      });
-   }
+   res.status(200).json({
+      status: 'success',
+      data: { tour },
+   });
 };
 exports.updateTour = (req, res) => {
-   const id = parseInt(req.params.id);
    const modifiedTour = req.body;
-   const tour = tours.find((el) => el.id === id);
-
-   if (tour) {
-      res.status(200).json({
-         status: 'success',
-         data: { tour: modifiedTour },
-      });
-   } else {
-      res.status(404).json({
-         status: 'fail',
-         massage: 'Not Found',
-      });
-   }
+   res.status(200).json({
+      status: 'success',
+      data: { tour: modifiedTour },
+   });
 };
 exports.deleteTour = (req, res) => {
-   const id = parseInt(req.params.id);
-
-   if (id >= tours.length) {
-      res.status(404).json({
-         status: 'fail',
-         massage: 'Not Found',
-      });
-   } else {
-      // 204 No Content - запрос успешный, но не возвращает никаких данных.
-      res.status(204).json({
-         status: 'success',
-         data: null,
-      });
-   }
+   // 204 No Content - запрос успешный, но не возвращает никаких данных.
+   res.status(204).json({
+      status: 'success',
+      data: null,
+   });
 };
