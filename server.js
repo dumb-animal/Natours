@@ -1,4 +1,4 @@
-require('dotenv').config(); // Loading .env file
+require('dotenv').config({ path: './configs/.env' }); // Loading .env file
 
 const app = require('./app');
 
