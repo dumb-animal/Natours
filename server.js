@@ -1,9 +1,8 @@
-require('dotenv').config({ path: './configs/.env' }); // Loading .env file
+const app = require("./src/app");
 
-const app = require('./app');
+const serverConfig = require("./src/configs/server.config");
 
-const PORT = process.env.PORT || 3000;
+const PORT = serverConfig.PORT || 3000;
+const HOST = serverConfig.HOST || "localhost";
 
-app.listen(PORT, () => {
-   console.log(`App running on port ${PORT}...`);
-});
+app.listen(PORT, HOST, () => console.log(`App running on ${HOST}:${PORT}...`));
