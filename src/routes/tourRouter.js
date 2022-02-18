@@ -9,9 +9,13 @@ const {} = tourController;
 
 router
 	.route(tourRoutes.tours)
-	.get((req, res) => {})
+	.get(tourController.getAllTours)
 	.post(tourController.createTour);
 
-router.route(tourRoutes.tour).get((req, res) => {});
+router
+	.route(tourRoutes.tour)
+	.get(tourController.getTour)
+	.put(tourController.updateTour)
+	.delete(tourController.deleteTour);
 
 module.exports = router;
