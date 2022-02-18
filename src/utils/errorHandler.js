@@ -9,6 +9,8 @@ module.exports = (err, req, res, next) => {
 	// if acceptable, will show unhandled error messages
 	const isAcceptable = NODE_ENV === "development" && !err.isOperational;
 
+	if (isAcceptable) console.log(err.message);
+
 	res.status(err.statusCode).json({
 		status: err.status,
 		message: isAcceptable ? err.message : "Внутренняя ошибка",

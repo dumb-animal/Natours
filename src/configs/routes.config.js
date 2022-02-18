@@ -1,13 +1,13 @@
 module.exports = {
 	any: "*",
-	users: "/api/v1/users",
-	usersRoutes: {
-		getAll: "/",
-		getOne: "/:id",
+	user: "/api/v1/user",
+	userRoutes: {
+		users: "/",
+		user: "/:id",
 	},
-	tours: "/api/v1/tours",
-	toursRoutes: {
-		getAll: "/",
-		getOne: "/:id",
+	tour: "/api/v1/tour",
+	tourRoutes: {
+		tours: "/",
+		tour: "/:id",
 	},
 };

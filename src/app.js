@@ -8,8 +8,8 @@ const routesConfig = require("./configs/routes.config");
 const errorsConfig = require("./configs/errors.config");
 
 // ROUTERS
-const toursRouter = require("./routes/toursRouter");
-const usersRouter = require("./routes/usersRouter");
+const tourRouter = require("./routes/tourRouter");
+const userRouter = require("./routes/userRouter");
 
 // UTILS
 const errorHandler = require("./utils/errorHandler");
@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: false })); // x-www-form-urlencoded
 app.use(express.static(`${__dirname}/public`)); // Static files
 
 // ROUTES
-app.use(routesConfig.tours, toursRouter);
-app.use(routesConfig.users, usersRouter);
+app.use(routesConfig.tour, tourRouter);
+app.use(routesConfig.user, userRouter);
 app.all(routesConfig.any, (req, res, next) => next(errorsConfig.routeNotFound));
 
 // ERROR HANDLER
