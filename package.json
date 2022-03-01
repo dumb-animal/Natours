@@ -27,7 +27,11 @@
 		"sass": "^1.45.1"
 	},
 	"dependencies": {
+		"bcrypt": "^5.0.1",
 		"express": "^4.17.2",
-		"mongoose": "^6.2.2"
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.2.2",
+		"slugify": "^1.6.5",
+		"validator": "^13.7.0"
 	}
 }
