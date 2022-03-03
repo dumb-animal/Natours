@@ -14,4 +14,16 @@ module.exports = {
 		statusCode: 400,
 		message: "Такого пользователя не существует",
 	},
+	passwordWasChanged: {
+		statusCode: 401,
+		message: "Пароль был изменен. Пожалуйста, авторизуйтесь заново",
+	},
+	noPermission: {
+		statusCode: 403,
+		message: "У вас недостаточно прав для выполнения этих действий",
+	},
+	mailError: {
+		statusCode: 500,
+		message: "Не удалось отправить электронное письмо"
+	}
 };

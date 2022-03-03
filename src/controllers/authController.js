@@ -12,6 +12,8 @@ const { secret, expiration } = require("../configs/token.config");
 // UTILS
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+const sendEmail = require("../utils/email");
+
 
 const signToken = (id) => jwt.sign({ id }, secret, { expiresIn: expiration });
 
@@ -48,27 +50,63 @@ class AuthController {
 
 	isAuthorized = catchAsync(async (req, res, next) => {
 		// 1) Getting token and check of it's there
-		const isProvided =
-			req.headers.authorization &&
-			req.headers.authorization.startWith("Bearer");
+		const isProvided = req.headers.authorization && req.headers.authorization.startsWith("Bearer");
 		if (!isProvided) throw new AppError(errorsConfig.tokenNotProvided);
 
 		const token = req.headers.authorization.split(" ")[1];
 		if (!token) throw new AppError(errorsConfig.tokenNotProvided);
 
 		// 2) Verification token
-		const { id } = await promisify(jwt.verify)(token, secret).catch(
+		const decoded = await promisify(jwt.verify)(token, secret).catch(
 			(err) => new AppError(errorsConfig.invalidToken)
 		);
 
 		// 3) Check if user still exists
-		const user = await User.findById(id);
+		const user = await User.findById(decoded.id);
 		if (!user) throw new AppError(errorsConfig.userNotExist);
 
 		// 4) Check if user change password after the token was issued
+		if (user.changedPasswordAfter(decoded.iat)) throw new AppError(errorsConfig.passwordWasChanged);
 
+		req.user = user;
 		next();
 	});
+
+	restrictTo = (...roles) =>
+		catchAsync(async (req, res, next) => {
+			if (!roles.includes(req.user.role)) throw new AppError(errorsConfig.noPermission);
+			next();
+		});
+
+	forgotPassword = catchAsync(async (req, res, next) => {
+		// 1) Get user based on POSTed email
+		const user = await User.findOne({ email: req.body.email });
+		if (!user) throw new AppError(errorsConfig.userNotExist);
+
+		// 2) Generate the random reset token
+		const token = user.createPasswordResetToken();
+		await user.save({ validateBeforeSave: false });
+
+		// 3) Send it to user's email
+		const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/reset-password/${token}`
+		console.log(resetURL)
+
+		await sendEmail({
+			email: user.email,
+			subject: "Reset Password",
+			message: resetURL
+		}).catch(async (err) => {
+			user.passwordResetToken = undefined;
+			user.passwordResetExpires = undefined;
+			await user.save({ validateBeforeSave: false });
+			throw new AppError(errorConfig.mailError);
+		})
+
+		res.status(200).json({ status: "success", data: { token } });
+	})
+
+	resetPassword = catchAsync(async (req, res, next) => {
+	})
 }
 
 module.exports = new AuthController();
