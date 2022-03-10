@@ -7,7 +7,8 @@ module.exports = {
 		signup: "/signup",
 		login: "/login",
 		forgot: "/forgot-password",
-		reset: "/reset-password/:token"
+		reset: "/reset-password/:token",
+		updatePassword: "/update-password"
 	},
 	tour: "/api/v1/tour",
 	tourRoutes: {

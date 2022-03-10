@@ -1,6 +1,7 @@
 // MODULES
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const crypto = require('crypto');
 
 // MODELS
 const User = require("../models/userModel");
@@ -72,11 +73,10 @@ class AuthController {
 		next();
 	});
 
-	restrictTo = (...roles) =>
-		catchAsync(async (req, res, next) => {
-			if (!roles.includes(req.user.role)) throw new AppError(errorsConfig.noPermission);
-			next();
-		});
+	restrictTo = (...roles) => catchAsync(async (req, res, next) => {
+		if (!roles.includes(req.user.role)) throw new AppError(errorsConfig.noPermission);
+		next();
+	});
 
 	forgotPassword = catchAsync(async (req, res, next) => {
 		// 1) Get user based on POSTed email
@@ -106,6 +106,48 @@ class AuthController {
 	})
 
 	resetPassword = catchAsync(async (req, res, next) => {
+		// 1) Get user based on the token
+		const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+		const user = await User.findOne({
+			passwordResetToken: hashedToken,
+			passwordResetExpires: { $gt: Date.now() }
+		});
+
+		// 2) If token has not expired, and there is user, set the new password
+		if (!user) throw new AppError(errorsConfig.tokenExpired);
+
+		// 3) Update changedPasswordAt property for the user
+		const { password, passwordConfirm } = req.body;
+
+		user.password = password;
+		user.passwordConfirm = passwordConfirm;
+		user.passwordResetToken = undefined;
+		user.passwordResetExpires = undefined;
+
+		await user.save();
+
+		// 4) Log the user in, send JWT
+		const token = signToken(user._id);
+		res.status(200).json({ status: "success", data: { user, token } });
+	})
+
+	updatePassword = catchAsync(async (req, res, next) => {
+		// 1) Get user from collection
+		const user = await User.findById(req.user.id);
+		const { password, passwordConfirm, passwordCurrent } = req.body;
+
+		// 2) Check if POSTed current password is correct
+		const isCorrect = await user.correctPassword(passwordCurrent);
+		if (!isCorrect) throw new AppError(errorsConfig.invalidData);
+
+		// 3) If so, update password
+		user.password = password;
+		user.passwordConfirm = passwordConfirm;
+		await user.save();
+
+		// 4) Log user in? send JWT
+		const token = signToken(user._id);
+		res.status(200).json({ status: "success", data: { user, token } });
 	})
 }
 

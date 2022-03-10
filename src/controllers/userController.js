@@ -16,13 +16,13 @@ class UserController {
 		});
 	});
 
-	getUser = catchAsync(async (req, res, next) => {});
+	getUser = catchAsync(async (req, res, next) => { });
 
-	createUser = catchAsync(async (req, res, next) => {});
+	createUser = catchAsync(async (req, res, next) => { });
 
-	updateUser = catchAsync(async (req, res, next) => {});
+	updateUser = catchAsync(async (req, res, next) => { });
 
-	deleteUser = catchAsync(async (req, res, next) => {});
+	deleteUser = catchAsync(async (req, res, next) => { });
 }
 
 module.exports = new UserController();

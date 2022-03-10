@@ -25,5 +25,13 @@ module.exports = {
 	mailError: {
 		statusCode: 500,
 		message: "Не удалось отправить электронное письмо"
+	},
+	userNotFound: {
+		statusCode: 400,
+		message: "Пользователь не найден"
+	},
+	tokenExpired: {
+		statusCode: 400,
+		message: "Токен истёк"
 	}
 };
